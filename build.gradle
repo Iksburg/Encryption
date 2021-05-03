@@ -1,0 +1,23 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib"
+    compile group: 'junit', name: 'junit', version: '4.13.2'
+    compile group: 'args4j', name: 'args4j', version: '2.33'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'encryption.MainKt'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
